@@ -303,6 +303,46 @@ p {
   color: #e6eaf3;
 }
 
+.hero-bouton {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  width: 100%;
+  margin-inline: auto;
+}
+
+.hero .hero-grid .hero-bouton {
+  justify-self: center;
+  align-self: center;
+}
+
+.hero-bouton .hero-tags {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 0.75rem;
+  justify-content: center;
+}
+
+.hero-bouton .hero-tags .pill.small {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(230, 234, 243, 0.1);
+  width: max-content;
+  font-size: 0.9rem;
+  font-family: "Inter", sans-serif;
+  color: #9aa4c7;
+  font-size: 0.85rem;
+  color: #e6eaf3;
+  line-height: 1;
+}
+
 .hero-visual {
   display: grid;
   justify-items: center;
@@ -1068,6 +1108,14 @@ body[data-page=marvel] .btn-return:hover {
 }
 
 @media (min-width: 768px) {
+  .hero-bouton {
+    justify-content: flex-start;
+  }
+  .hero-bouton .hero-tags {
+    justify-content: flex-start;
+  }
+}
+@media (min-width: 768px) {
   h2 {
     font-family: "Poppins", sans-serif;
     font-weight: 700;
@@ -1290,6 +1338,39 @@ body[data-page=marvel] .btn-return:hover {
 
 #skills.section .bar {
   width: 100%;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 999px;
+  border: 1px solid rgba(230, 234, 243, 0.15);
+  width: max-content;
+  font-size: 0.9rem;
+  font-family: "Inter", sans-serif;
+  color: #9aa4c7;
+}
+
+.pill,
+.pill > span {
+  line-height: 1;
+}
+
+.pill .dot {
+  width: 0.6em;
+  height: 0.6em;
+  background: #27d17f;
+  border-radius: 50%;
+  flex: 0 0 0.6em;
+  align-self: center;
+}
+
+@supports (-webkit-touch-callout: none) {
+  .pill .dot {
+    transform: translateY(-0.5px);
+  }
 }
 
 /*# sourceMappingURL=main.css.map */
