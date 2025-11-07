@@ -139,6 +139,7 @@ p {
     height: 8px;
     background: v.$green;
     border-radius: 50%;
+    
   }
 
   h1 {
@@ -192,6 +193,40 @@ p {
   @include m.pill(.45rem .9rem, 999px, rgba(v.$text, .06), 1px solid rgba(v.$text, .1)); // pill petite
   font-size: .85rem; 
   color: v.$text;
+}
+
+.hero-bouton {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;  
+  gap: .75rem;
+  width: 100%;             
+  margin-inline: auto;        
+}
+
+
+.hero .hero-grid .hero-bouton {
+  justify-self: center;      
+  align-self: center;
+}
+
+
+.hero-bouton .hero-tags {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .6rem;
+  margin-top: .75rem;
+  justify-content: center;  
+}
+
+
+.hero-bouton .hero-tags .pill.small {
+  @include m.pill(.45rem .9rem, 999px, rgba(v.$text, .06), 1px solid rgba(v.$text, .1));
+  font-size: .85rem;
+  color: v.$text;
+  line-height: 1;            
 }
 
 .hero-visual {
@@ -579,6 +614,10 @@ body[data-page="marvel"] {
 
 // RESPONSIVE (≥ v.$bp-tablet)
   
+@media (min-width: v.$bp-tablet) {
+  .hero-bouton { justify-content: flex-start; }
+  .hero-bouton .hero-tags { justify-content: flex-start; }
+}
 
 @media (min-width: v.$bp-tablet) {
 
@@ -831,3 +870,29 @@ body[data-page="marvel"] {
   min-height: 150px; 
 }
 #skills.section .bar { width: 100%; }
+
+// Point vert aligné au texte
+
+.pill { @include m.pill(); }
+
+
+.pill,
+.pill > span {
+  line-height: 1;         
+}
+
+
+.pill .dot {
+  width: .6em;              
+  height: .6em;
+  background: v.$green;
+  border-radius: 50%;
+  flex: 0 0 .6em;
+  align-self: center;      
+}
+
+@supports (-webkit-touch-callout: none) {
+  .pill .dot { transform: translateY(-0.5px); }
+}
+
+
