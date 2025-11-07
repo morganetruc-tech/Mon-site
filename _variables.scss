@@ -1,0 +1,31 @@
+// Couleurs de base 
+$background: #0b1020;       
+$surface:    #10162a;        
+$text:       #e6eaf3;        
+$muted:      #9aa4c7;        
+$violet:     #7c3aed;        
+$cyan:       #06b6d4;               
+$green:      #27d17f;        
+
+// Dégradé principal 
+$gradient: linear-gradient(90deg, $violet, $cyan); 
+
+// Rythme global 
+$margin:  6rem;              
+$padding: 1rem;              
+$radius:  999px;             
+
+// Typographies 
+$font-primary: "Inter", sans-serif;   
+$font-title:   "Poppins", sans-serif; 
+$font-size:    1rem;                  
+
+// Grand ordi  : ≥ 1200px
+$bp-small-desktop: 1200px;
+
+// Petit ordi: entre 768px et 1200px 
+$bp-tablet: 768px;
+
+// Mobile : ≤ 768px 
+$bp-mobile: 767px; 
+

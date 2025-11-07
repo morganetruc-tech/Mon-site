@@ -1,0 +1,349 @@
+@use "variables" as v;
+@use "sass:math";
+
+
+@mixin text() {
+  color: v.$text;
+  font-size: v.$font-size;
+  font-weight: 500;
+  font-family: v.$font-primary;
+}
+
+
+@mixin paragraphe() {
+  font-size: v.$font-size;
+  font-family: v.$font-primary;
+  color: v.$muted;
+  margin: 0 0 1rem;
+}
+
+
+
+@mixin pill($padding: .6rem 1.2rem,
+  $radius: 999px,
+  $bg: rgba(v.$text, 0.08),
+  $border: 1px solid rgba(v.$text, 0.15)) {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  padding: $padding;
+  border-radius: $radius;
+  border: $border;
+  width: max-content;
+  font-size: .9rem;
+  font-family: v.$font-primary;
+  color: v.$muted;
+}
+
+
+@mixin btn-base($padding: 1rem 1.2rem, $radius: .9rem) {
+  display: inline-block;
+  font-family: v.$font-primary;
+  font-size: 1.1rem;
+  padding: $padding;
+  border-radius: $radius;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    transform .2s ease,
+    color .2s ease,
+    border-color .2s ease;
+}
+
+
+@mixin btn-primary() {
+  background: v.$gradient;
+  color: v.$text;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+
+@mixin btn-ghost() {
+  background: rgba(v.$text, 0.05);
+  border: 1px solid rgba(v.$text, 0.12);
+  color: v.$text;
+
+  &:hover {
+    background: rgba(v.$text, 0.1);
+    transform: translateY(-2px);
+  }
+}
+
+
+@mixin section-title($size: 2.5rem) {
+  font-family: v.$font-title; 
+  font-weight: 700; 
+  font-size: $size; 
+  color: v.$text;
+}
+
+
+@mixin grid-cards($cols: 2, $gap: 2rem) {
+  display: grid;
+  grid-template-columns: repeat($cols, 1fr); 
+  gap: $gap; 
+  align-items: stretch; 
+}
+
+
+@mixin contour($radius: 1.1rem, $pad: 2rem, $border: rgba(v.$text, .08)) {
+  background: v.$surface; 
+  border-radius: $radius; 
+  padding: $pad; 
+  border: 1px solid $border; 
+  box-shadow: 
+    0 0 0 1px rgba(0, 0, 0, .02),
+    0 1.2rem 2.5rem rgba(0, 0, 0, .25);
+}
+
+
+@mixin atouts-list($gap: .8rem, $bullet-color: rgba(v.$text, .55)) {
+  list-style: none; 
+  margin: 0;
+  padding: 0; 
+  display: grid; 
+  gap: $gap; 
+
+  li {
+    display: flex; 
+    align-items: flex-start; 
+    gap: .6rem; 
+    color: v.$muted; 
+    font-family: v.$font-primary; 
+    font-size: v.$font-size; 
+  }
+}
+
+
+@mixin tag-row($gap-y: .8rem, $gap-x: 1rem, $mt: .5rem) {
+  display: flex; 
+  flex-wrap: wrap; 
+  gap: $gap-y $gap-x; 
+  margin-top: $mt; 
+}
+
+@mixin media-frame($ratio: math.div(16, 9), $radius: .9rem) {
+  aspect-ratio: $ratio; 
+  overflow: hidden; 
+  border-radius: $radius; 
+  background: #0e1326; 
+
+  img {
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    display: block; 
+  }
+}
+
+@mixin card-link() {
+  margin-top: auto; 
+  font-family: v.$font-primary; 
+  font-size: 1rem; 
+  color: v.$text; 
+  text-decoration: none; 
+  border-bottom: 1px solid rgba(v.$text, .2); 
+  width: max-content; 
+  padding-bottom: .2rem; 
+}
+
+
+@mixin gradient-text() {
+  background: v.$gradient; 
+  -webkit-background-clip: text; // Pour Safari 
+  background-clip: text; // Les autres navigateurs
+  color: transparent; 
+}
+
+@mixin burger-menu($size: 40px, 
+  $bar-thickness: 2px, 
+  $gap: 6px,
+  $radius: 12px 
+
+) {
+  display: none;
+  @media (max-width: 1050px) {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: $gap;
+    width: $size;
+    height: $size;
+    min-width: $size;
+    min-height: $size;
+    padding: 0;
+    border-radius: $radius;
+    background: linear-gradient(v.$background, v.$background) padding-box,
+      v.$gradient border-box;
+    border: 2px solid transparent;
+    cursor: pointer;
+    z-index: 1000;
+
+    span {
+      display: block;
+      width: 70%;
+      height: $bar-thickness;
+      background: v.$gradient;
+      border-radius: 1px;
+      transition: transform .28s ease, opacity .2s ease;
+      will-change: transform, opacity;
+    }
+
+//animation à l'ouverture
+    &[aria-expanded="true"] {
+      >span:nth-child(1) {
+        transform: translateY(calc(#{$gap} + #{$bar-thickness})) rotate(45deg);
+      }
+
+      >span:nth-child(2) {
+        opacity: 0;
+      }
+
+      >span:nth-child(3) {
+        transform: translateY(calc(-#{$gap} - #{$bar-thickness})) rotate(-45deg);
+      }
+    }
+    &~.main-nav {
+      position: absolute;
+      top: 72px;
+      right: 16px;
+      background: v.$background;
+      border-radius: 12px;
+      padding: 12px 16px;
+      z-index: 200;
+
+      opacity: 0;
+      transform: translateY(-8px);
+      pointer-events: none;
+      max-height: 0;
+      overflow: hidden;
+      transition: opacity .25s ease, transform .25s ease, max-height .25s ease;
+
+      ul {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      a {
+        color: v.$text;
+        text-decoration: none;
+        font-weight: 600;
+        transition: color .2s ease;
+
+        &:hover {
+          color: v.$cyan;
+        }
+      }
+    }
+
+    &[aria-expanded="true"]~.main-nav {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+      max-height: 80vh;
+    }
+  }
+}
+
+
+
+@mixin project-page($gradient) {
+  background: v.$background; 
+  font-family: v.$font-primary;
+  color: v.$text; 
+  min-height: 100vh; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  text-align: center; 
+  padding: 2rem; 
+
+  .section-title {
+    background: $gradient;
+    background-clip: text;
+    color: transparent;
+    display: inline-block;
+  }
+
+  .project-cover {
+    width: 100%;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+  }
+
+  .project-box {
+    background: v.$surface;
+    border: 2px solid transparent;
+    border-image: $gradient 1;
+    border-radius: 20px;
+    padding: 3rem 2rem;
+    max-width: 600px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, .4);
+    animation: fadeIn .6s ease forwards;
+
+    h1 {
+      font-family: v.$font-title;
+      background: $gradient;
+      background-clip: text;
+      color: transparent;
+      display: inline-block;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    p {
+      color: v.$muted;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+  }
+
+  .btn-return {
+    display: inline-block;
+    padding: .9rem 1.4rem;
+    border-radius: 999px;
+    background: $gradient;
+    color: #0b0b12;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: .5px;
+    box-shadow: 0 0 15px rgba(124, 58, 237, .4);
+    animation: pulse 1.8s infinite ease-in-out;
+    transition: transform .2s ease;
+
+    &:hover {
+      transform: scale(1.03);
+    }
+  }
+
+  @keyframes pulse {
+
+    0%,
+    100% {
+      box-shadow: 0 0 10px rgba(124, 58, 237, .3), 0 0 20px rgba(6, 182, 212, .3);
+    }
+
+    50% {
+      box-shadow: 0 0 20px rgba(124, 58, 237, .5), 0 0 30px rgba(6, 182, 212, .5);
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
