@@ -305,6 +305,7 @@ p {
 .presentation {
   margin: 0; 
   padding: 3rem 1rem 0; 
+
 }
 
 .grid-2 {
@@ -732,6 +733,7 @@ body[data-page="marvel"] {
     padding: 0 0 0 3rem; 
   }
 
+
   .hero {
     margin: v.$margin;
     padding-top: 10rem; 
@@ -791,7 +793,7 @@ body[data-page="marvel"] {
   }
 }
 
-// PATCH CORRECTIF TEMPORAIRE (Titres, hero, contact, skills)
+// PATCH CORRECTIF TEMPORAIRE (Titres, hero, contact, skills,pastille verte)
 
 
 // Bloc et pb affichage des traits 
@@ -872,7 +874,6 @@ body[data-page="marvel"] {
 #skills.section .bar { width: 100%; }
 
 // Point vert aligné au texte
-
 .pill { @include m.pill(); }
 
 
@@ -896,3 +897,41 @@ body[data-page="marvel"] {
 }
 
 
+// Correction mauvaise marge bloc présentation  (bloc, h2, p)
+
+.hero h1 { 
+  font-family: v.$font-title;
+  font-size: 2rem;
+  font-weight: 800;
+  margin: 1rem 0 .75rem;
+}
+.hero p {
+  @include m.paragraphe();
+  color: v.$muted;
+  max-width: 60ch;
+  margin: 0 auto 1.25rem;
+}
+
+@media (min-width: #{v.$bp-small-desktop}) {
+  .presentation .container > h2,
+  .presentation .container > p:first-of-type {
+    padding-left: 3rem;  
+    margin-left: 0;     
+    margin-right: 0;
+  }
+}
+
+@media (min-width: #{v.$bp-small-desktop}) {
+  .presentation .bloc {
+    justify-content: start;    
+    background: none;        
+    padding-left: 3rem;        
+  }
+
+  .presentation .bloc .line {
+    width: 2.5rem;           
+    height: 2px;
+    background: rgba(v.$text, .25);
+    border-radius: 2px;
+  }
+}

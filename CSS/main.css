@@ -1372,5 +1372,43 @@ body[data-page=marvel] .btn-return:hover {
     transform: translateY(-0.5px);
   }
 }
+.hero h1 {
+  font-family: "Poppins", sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  margin: 1rem 0 0.75rem;
+}
+
+.hero p {
+  font-size: 1rem;
+  font-family: "Inter", sans-serif;
+  color: #9aa4c7;
+  margin: 0 0 1rem;
+  color: #9aa4c7;
+  max-width: 60ch;
+  margin: 0 auto 1.25rem;
+}
+
+@media (min-width: 1200px) {
+  .presentation .container > h2,
+  .presentation .container > p:first-of-type {
+    padding-left: 3rem;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+@media (min-width: 1200px) {
+  .presentation .bloc {
+    justify-content: start;
+    background: none;
+    padding-left: 3rem;
+  }
+  .presentation .bloc .line {
+    width: 2.5rem;
+    height: 2px;
+    background: rgba(230, 234, 243, 0.25);
+    border-radius: 2px;
+  }
+}
 
 /*# sourceMappingURL=main.css.map */
